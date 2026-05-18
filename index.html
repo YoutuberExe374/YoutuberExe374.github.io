@@ -1,19 +1,17 @@
 <!DOCTYPE html>
+
 <html lang="ca">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gran Tour pel Barroc — Portfoli de 3r ESO</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
-
 <style>
-:root {
+ :root {
   --gold: #C9A84C;
   --gold-light: #E8C97A;
   --gold-pale: #F5EDD6;
 
-  /* 🔧 MÁS OSCURO Y LEGIBLE */
   --ink: #0E0703;
   --ink-mid: #1E120A;
   --ink-soft: #2F1C10;
@@ -27,103 +25,1463 @@
   --blue-mid: #203857;
 
   --shadow: rgba(0,0,0,0.25);
-}
+ }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+- { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--cream);
-  color: var(--ink);
-  font-family: 'Crimson Pro', Georgia, serif;
-  font-size: 18px;
-  line-height: 1.75;
-  overflow-x: hidden;
+background: var(–cream);
+color: var(–ink);
+font-family: ‘Crimson Pro’, Georgia, serif;
+font-size: 18px;
+line-height: 1.75;
+overflow-x: hidden;
 }
 
-/* Noise */
+/* ── NOISE TEXTURE OVERLAY ── */
 body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.25;
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘0.035’/%3E%3C/svg%3E”);
+pointer-events: none;
+z-index: 9999;
+opacity: 0.5;
 }
 
-/* NAV */
+/* ── NAV ── */
 nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  background: rgba(10,6,3,0.95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(201,168,76,0.25);
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 58px;
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 100;
+background: rgba(26,18,9,0.92);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid rgba(201,168,76,0.3);
+padding: 0 2rem;
+display: flex;
+align-items: center;
+justify-content: space-between;
+height: 58px;
 }
 
 .nav-brand {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--gold);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1rem;
+font-weight: 600;
+color: var(–gold);
+letter-spacing: 0.12em;
+text-transform: uppercase;
+}
+
+.nav-links {
+display: flex;
+gap: 2rem;
+list-style: none;
 }
 
 .nav-links a {
-  color: rgba(232,201,122,0.9);
+font-family: ‘Crimson Pro’, serif;
+font-size: 0.88rem;
+color: rgba(232,201,122,0.75);
+text-decoration: none;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+transition: color 0.25s;
 }
 
-/* HERO */
+.nav-links a:hover { color: var(–gold-light); }
+
+/* ── HERO ── */
 .hero {
-  min-height: 100vh;
-  background: linear-gradient(160deg, #0B0F18 0%, #120B05 55%, #1C0F06 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 6rem 2rem 4rem;
+min-height: 100vh;
+background: linear-gradient(160deg, #0E1A2B 0%, #1A1209 55%, #2D1A08 100%);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+position: relative;
+overflow: hidden;
+padding: 6rem 2rem 4rem;
+}
+
+.hero-ornament {
+position: absolute;
+inset: 0;
+background-image:
+radial-gradient(ellipse 60% 40% at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 60%),
+radial-gradient(ellipse 50% 60% at 80% 20%, rgba(45,74,110,0.25) 0%, transparent 60%);
+}
+
+.hero-pattern {
+position: absolute;
+inset: 0;
+background-image: url(“data:image/svg+xml,%3Csvg width=‘60’ height=‘60’ viewBox=‘0 0 60 60’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cg fill=‘none’ stroke=‘rgba(201,168,76,0.06)’ stroke-width=‘0.5’%3E%3Cpath d=‘M30 5 L55 30 L30 55 L5 30 Z’/%3E%3Ccircle cx=‘30’ cy=‘30’ r=‘12’/%3E%3C/g%3E%3C/svg%3E”);
+opacity: 0.8;
+}
+
+.hero-content { position: relative; z-index: 2; max-width: 860px; }
+
+.hero-label {
+font-family: ‘Crimson Pro’, serif;
+font-size: 0.85rem;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+color: var(–gold);
+margin-bottom: 1.5rem;
+opacity: 0;
+animation: fadeUp 0.8s 0.2s ease forwards;
 }
 
 .hero-title {
-  color: #F3E9D6;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(3.5rem, 9vw, 7rem);
+font-weight: 300;
+color: #F8F2E4;
+line-height: 1.0;
+letter-spacing: -0.01em;
+margin-bottom: 0.5rem;
+opacity: 0;
+animation: fadeUp 0.9s 0.4s ease forwards;
+}
+
+.hero-title em {
+font-style: italic;
+color: var(–gold-light);
+font-weight: 300;
 }
 
 .hero-sub {
-  color: rgba(243,233,214,0.75);
+font-family: ‘IM Fell English’, serif;
+font-style: italic;
+font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+color: rgba(248,242,228,0.65);
+margin: 1.5rem 0 3rem;
+opacity: 0;
+animation: fadeUp 0.9s 0.6s ease forwards;
 }
 
-/* TEXTOS MÁS OSCUROS GLOBAL */
+.hero-divider {
+width: 120px;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(–gold), transparent);
+margin: 0 auto 2rem;
+opacity: 0;
+animation: fadeUp 0.9s 0.7s ease forwards;
+}
+
+.hero-meta {
+display: flex;
+gap: 3rem;
+justify-content: center;
+opacity: 0;
+animation: fadeUp 0.9s 0.9s ease forwards;
+}
+
+.hero-meta-item {
+text-align: center;
+}
+
+.hero-meta-label {
+font-size: 0.75rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–gold);
+display: block;
+margin-bottom: 0.2rem;
+}
+
+.hero-meta-value {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.15rem;
+color: rgba(248,242,228,0.85);
+}
+
+.scroll-hint {
+position: absolute;
+bottom: 2.5rem;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.5rem;
+color: rgba(201,168,76,0.5);
+font-size: 0.7rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+animation: bounce 2.5s ease-in-out infinite;
+}
+
+.scroll-hint::after {
+content: ‘’;
+display: block;
+width: 1px;
+height: 40px;
+background: linear-gradient(to bottom, var(–gold), transparent);
+}
+
+@keyframes bounce {
+0%, 100% { transform: translateX(-50%) translateY(0); }
+50% { transform: translateX(-50%) translateY(6px); }
+}
+
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SECTIONS ── */
+section { padding: 6rem 2rem; }
+
+.container { max-width: 960px; margin: 0 auto; }
+.container-wide { max-width: 1200px; margin: 0 auto; }
+
+.section-label {
+font-size: 0.75rem;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(–gold);
+margin-bottom: 0.8rem;
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.section-label::before, .section-label::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: linear-gradient(to right, var(–gold-pale), transparent);
+}
+
+.section-label::before { background: linear-gradient(to left, var(–gold-pale), transparent); }
+
+.section-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(2.2rem, 5vw, 3.5rem);
+font-weight: 600;
+color: var(–ink);
+line-height: 1.15;
+margin-bottom: 0.5rem;
+}
+
+.section-title em { font-style: italic; color: var(–red-dark); }
+
 .section-intro {
-  color: var(--ink-mid);
+font-family: ‘Crimson Pro’, serif;
+font-size: 1.2rem;
+color: var(–ink-soft);
+max-width: 680px;
+line-height: 1.75;
+margin-bottom: 3rem;
+font-style: italic;
 }
 
-p, li {
-  color: var(--ink-mid);
+/* ── DARK SECTION ── */
+.section-dark {
+background: var(–ink);
+color: var(–parchment);
 }
 
-.glossari-def,
-.dest-desc,
-.master-desc {
-  color: var(--ink-mid);
+.section-dark .section-title { color: var(–gold-light); }
+.section-dark .section-intro { color: rgba(245,237,214,0.7); }
+.section-dark .section-label { color: var(–gold); }
+.section-dark .section-label::before { background: linear-gradient(to left, rgba(201,168,76,0.3), transparent); }
+.section-dark .section-label::after { background: linear-gradient(to right, rgba(201,168,76,0.3), transparent); }
+
+/* ── CONTEXT HISTORIC ── */
+.context-bg {
+background: var(–parchment);
+border-top: 3px solid var(–gold);
+}
+
+.timeline {
+position: relative;
+padding-left: 3rem;
+margin-top: 2rem;
+}
+
+.timeline::before {
+content: ‘’;
+position: absolute;
+left: 0.85rem;
+top: 0;
+bottom: 0;
+width: 2px;
+background: linear-gradient(to bottom, var(–gold), var(–gold-pale), transparent);
+}
+
+.timeline-item {
+position: relative;
+margin-bottom: 2rem;
+opacity: 0;
+transform: translateX(-15px);
+transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.timeline-item.visible {
+opacity: 1;
+transform: translateX(0);
+}
+
+.timeline-item::before {
+content: ‘’;
+position: absolute;
+left: -2.45rem;
+top: 0.5rem;
+width: 10px;
+height: 10px;
+border-radius: 50%;
+background: var(–gold);
+border: 2px solid var(–parchment);
+box-shadow: 0 0 0 3px var(–gold-pale);
+}
+
+.timeline-year {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 0.85rem;
+font-weight: 700;
+letter-spacing: 0.15em;
+color: var(–gold);
+text-transform: uppercase;
+margin-bottom: 0.2rem;
 }
 
 .timeline-event {
-  color: var(--ink-mid);
+font-size: 1.05rem;
+color: var(–ink-mid);
+font-style: italic;
 }
 
-</style>
-</head>
+/* ── COMPARISON TABLE ── */
+.compare-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 0;
+border: 1px solid var(–gold-pale);
+border-radius: 2px;
+overflow: hidden;
+margin-top: 2.5rem;
+box-shadow: 0 8px 40px var(–shadow);
+}
 
+.compare-header {
+padding: 1.5rem;
+text-align: center;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.2rem;
+font-weight: 700;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+}
+
+.compare-header.renaissance { background: var(–blue-dark); color: var(–parchment); }
+.compare-header.baroque { background: var(–red-dark); color: var(–parchment); }
+
+.compare-row {
+display: contents;
+}
+
+.compare-cell {
+padding: 0.9rem 1.5rem;
+font-size: 1rem;
+border-top: 1px solid var(–gold-pale);
+display: flex;
+align-items: center;
+gap: 0.6rem;
+}
+
+.compare-cell::before {
+content: ‘→’;
+color: var(–gold);
+font-size: 0.75rem;
+flex-shrink: 0;
+}
+
+.compare-cell.ren { background: rgba(26,46,74,0.04); color: var(–blue-dark); }
+.compare-cell.bar { background: rgba(122,28,28,0.04); color: var(–red-dark); }
+
+/* ── MASTERS GRID ── */
+.masters-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 1.5rem;
+margin-top: 2.5rem;
+}
+
+.master-card {
+background: var(–ink);
+border: 1px solid rgba(201,168,76,0.2);
+padding: 2rem 1.5rem;
+position: relative;
+overflow: hidden;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+opacity: 0;
+transform: translateY(20px);
+}
+
+.master-card.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+.master-card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 3px;
+background: linear-gradient(90deg, var(–gold), var(–gold-light));
+}
+
+.master-card:hover {
+transform: translateY(-4px);
+box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+}
+
+.master-symbol {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 2.5rem;
+color: var(–gold);
+line-height: 1;
+margin-bottom: 0.8rem;
+}
+
+.master-name {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.3rem;
+font-weight: 700;
+color: var(–gold-light);
+margin-bottom: 0.2rem;
+}
+
+.master-dates {
+font-size: 0.8rem;
+letter-spacing: 0.1em;
+color: rgba(201,168,76,0.55);
+margin-bottom: 0.8rem;
+text-transform: uppercase;
+}
+
+.master-desc {
+font-size: 0.95rem;
+color: rgba(245,237,214,0.7);
+line-height: 1.6;
+}
+
+/* ── MUSIC BOX ── */
+.music-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 1px;
+background: rgba(201,168,76,0.2);
+border: 1px solid rgba(201,168,76,0.2);
+margin-top: 2rem;
+overflow: hidden;
+}
+
+.music-card {
+background: var(–ink);
+padding: 1.8rem 1.5rem;
+transition: background 0.3s;
+}
+
+.music-card:hover { background: rgba(201,168,76,0.07); }
+
+.music-note {
+font-size: 2rem;
+margin-bottom: 0.6rem;
+}
+
+.music-composer {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.15rem;
+font-weight: 700;
+color: var(–gold-light);
+margin-bottom: 0.15rem;
+}
+
+.music-dates {
+font-size: 0.78rem;
+color: rgba(201,168,76,0.5);
+letter-spacing: 0.1em;
+margin-bottom: 0.7rem;
+text-transform: uppercase;
+}
+
+.music-work {
+font-size: 0.9rem;
+color: rgba(245,237,214,0.65);
+font-style: italic;
+}
+
+/* ── TOUR SECTION ── */
+.tour-bg { background: var(–parchment-dark); }
+
+.route-bar {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+padding: 1.2rem 2rem;
+background: var(–ink);
+border-radius: 2px;
+margin-bottom: 3.5rem;
+overflow-x: auto;
+flex-wrap: wrap;
+box-shadow: 0 4px 24px var(–shadow);
+}
+
+.route-stop {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+white-space: nowrap;
+}
+
+.route-city {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 0.95rem;
+font-weight: 700;
+color: var(–gold-light);
+letter-spacing: 0.06em;
+}
+
+.route-arrow {
+color: rgba(201,168,76,0.35);
+font-size: 0.8rem;
+}
+
+.destination-cards {
+display: flex;
+flex-direction: column;
+gap: 3rem;
+}
+
+.dest-card {
+display: grid;
+grid-template-columns: 260px 1fr;
+background: white;
+box-shadow: 0 4px 32px rgba(26,18,9,0.1);
+overflow: hidden;
+opacity: 0;
+transform: translateY(24px);
+transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.dest-card.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+.dest-card:nth-child(even) {
+grid-template-columns: 1fr 260px;
+}
+
+.dest-card:nth-child(even) .dest-info { order: -1; }
+
+.dest-aside {
+background: var(–ink);
+padding: 2.5rem 2rem;
+display: flex;
+flex-direction: column;
+justify-content: center;
+position: relative;
+overflow: hidden;
+}
+
+.dest-aside::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, rgba(201,168,76,0.12) 0%, transparent 60%);
+}
+
+.dest-num {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 5rem;
+font-weight: 700;
+color: rgba(201,168,76,0.12);
+line-height: 1;
+position: absolute;
+bottom: 1rem;
+right: 1.2rem;
+}
+
+.dest-emoji { font-size: 2.5rem; margin-bottom: 0.8rem; position: relative; }
+
+.dest-city {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 2rem;
+font-weight: 700;
+color: var(–gold-light);
+line-height: 1.1;
+position: relative;
+}
+
+.dest-country {
+font-size: 0.85rem;
+color: rgba(201,168,76,0.55);
+letter-spacing: 0.15em;
+text-transform: uppercase;
+margin-top: 0.3rem;
+position: relative;
+}
+
+.dest-info {
+padding: 2.5rem;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.dest-monument {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.35rem;
+font-weight: 700;
+color: var(–red-dark);
+margin-bottom: 0.8rem;
+}
+
+.dest-desc {
+font-size: 1rem;
+color: var(–ink-mid);
+line-height: 1.7;
+margin-bottom: 1rem;
+}
+
+.dest-curiositat {
+display: flex;
+gap: 0.6rem;
+background: var(–gold-pale);
+padding: 0.8rem 1rem;
+border-left: 3px solid var(–gold);
+font-size: 0.9rem;
+color: var(–ink-soft);
+font-style: italic;
+}
+
+.dest-highlights {
+margin-top: 1rem;
+display: flex;
+flex-direction: column;
+gap: 0.4rem;
+}
+
+.dest-highlight {
+font-size: 0.9rem;
+color: var(–blue-mid);
+display: flex;
+gap: 0.5rem;
+}
+
+.dest-highlight::before {
+content: ‘✦’;
+color: var(–gold);
+font-size: 0.65rem;
+margin-top: 0.3rem;
+flex-shrink: 0;
+}
+
+/* ── QUOTE INTERLUDE ── */
+.quote-section {
+background: linear-gradient(135deg, var(–blue-dark) 0%, var(–ink) 100%);
+padding: 6rem 2rem;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+
+.quote-section::before {
+content: ‘”’;
+position: absolute;
+top: -2rem;
+left: 50%;
+transform: translateX(-50%);
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 20rem;
+color: rgba(201,168,76,0.06);
+line-height: 1;
+pointer-events: none;
+}
+
+.quote-text {
+font-family: ‘IM Fell English’, serif;
+font-style: italic;
+font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+color: var(–parchment);
+max-width: 720px;
+margin: 0 auto 1.5rem;
+line-height: 1.5;
+position: relative;
+}
+
+.quote-author {
+font-size: 0.85rem;
+letter-spacing: 0.2em;
+color: var(–gold);
+text-transform: uppercase;
+}
+
+/* ── GLOSSARI ── */
+.glossari-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 1.5rem;
+margin-top: 2.5rem;
+}
+
+.glossari-card {
+background: white;
+border: 1px solid var(–parchment-dark);
+padding: 1.5rem;
+border-top: 3px solid var(–gold);
+opacity: 0;
+transform: translateY(16px);
+transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.glossari-card.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+.glossari-term {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.2rem;
+font-weight: 700;
+color: var(–red-dark);
+margin-bottom: 0.5rem;
+}
+
+.glossari-def {
+font-size: 0.95rem;
+color: var(–ink-mid);
+line-height: 1.65;
+}
+
+/* ── REFLEXIONS ── */
+.reflexions-bg {
+background: var(–parchment);
+border-top: 1px solid var(–parchment-dark);
+}
+
+.reflexio-box {
+background: white;
+border: 1px solid var(–parchment-dark);
+border-top: 4px solid var(–gold);
+padding: 2rem 2.5rem;
+margin-bottom: 1.5rem;
+box-shadow: 0 2px 16px rgba(26,18,9,0.06);
+}
+
+.reflexio-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.3rem;
+font-weight: 700;
+color: var(–blue-dark);
+margin-bottom: 1rem;
+}
+
+.reflexio-lines {
+display: flex;
+flex-direction: column;
+gap: 0.6rem;
+}
+
+.reflexio-line {
+border-bottom: 1px solid var(–parchment-dark);
+min-height: 2rem;
+color: var(–ink-soft);
+font-style: italic;
+font-size: 0.95rem;
+padding-bottom: 0.4rem;
+}
+
+/* ── ROLS SECTION ── */
+.rols-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 1px;
+background: var(–gold-pale);
+border: 1px solid var(–gold-pale);
+overflow: hidden;
+margin-top: 2rem;
+}
+
+.rol-card {
+background: var(–cream);
+padding: 2rem 1.5rem;
+text-align: center;
+transition: background 0.3s;
+}
+
+.rol-card:hover { background: var(–gold-pale); }
+
+.rol-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+
+.rol-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.15rem;
+font-weight: 700;
+color: var(–ink);
+margin-bottom: 0.4rem;
+}
+
+.rol-name {
+font-size: 0.95rem;
+color: var(–ink-soft);
+font-style: italic;
+border-bottom: 1px solid var(–parchment-dark);
+padding-bottom: 0.4rem;
+min-height: 1.8rem;
+}
+
+.rol-desc {
+font-size: 0.85rem;
+color: var(–ink-soft);
+margin-top: 0.6rem;
+line-height: 1.5;
+}
+
+/* ── FOOTER ── */
+footer {
+background: var(–ink);
+color: rgba(245,237,214,0.5);
+text-align: center;
+padding: 3rem 2rem;
+font-size: 0.9rem;
+}
+
+footer .footer-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.5rem;
+color: var(–gold);
+margin-bottom: 0.5rem;
+}
+
+.footer-divider {
+width: 80px;
+height: 1px;
+background: rgba(201,168,76,0.3);
+margin: 1.5rem auto;
+}
+
+/* ── HIGHLIGHT BOX ── */
+.highlight-box {
+background: var(–gold-pale);
+border-left: 4px solid var(–gold);
+padding: 1.2rem 1.8rem;
+margin: 1.5rem 0;
+font-style: italic;
+color: var(–ink-mid);
+font-size: 1.05rem;
+line-height: 1.7;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+.nav-links { display: none; }
+.dest-card, .dest-card:nth-child(even) {
+grid-template-columns: 1fr;
+}
+.dest-card:nth-child(even) .dest-info { order: 0; }
+.compare-grid { grid-template-columns: 1fr; }
+.compare-header.renaissance { display: none; }
+.compare-cell.ren { display: none; }
+}
+</style>
+
+</head>
 <body>
 
-<!-- TODO EL RESTO DE TU HTML SE QUEDA IGUAL -->
+<!-- NAV -->
+
+<nav>
+  <div class="nav-brand">Gran Tour pel Barroc</div>
+  <ul class="nav-links">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#art">Art</a></li>
+    <li><a href="#tour">Tour</a></li>
+    <li><a href="#glossari">Glossari</a></li>
+    <li><a href="#reflexions">Reflexions</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-ornament"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <p class="hero-label">Portfoli de Viatge · 3r d'ESO · Projecte Social i Artístic</p>
+    <h1 class="hero-title">Gran Tour<br>pel <em>Barroc</em></h1>
+    <p class="hero-sub">Un viatge per l'art i la música de l'Edat Moderna</p>
+    <div class="hero-divider"></div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Grup</span>
+        <span class="hero-meta-value">____________</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Curs</span>
+        <span class="hero-meta-value">2025–2026</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Parades</span>
+        <span class="hero-meta-value">6 ciutats</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">Descobreix</div>
+</section>
+
+<!-- ROLS DEL GRUP -->
+
+<section style="background: var(--parchment); padding: 4rem 2rem;">
+  <div class="container">
+    <div class="section-label">Fet per</div>
+    <h2 class="section-title">Efrén Santamaría<em>Grup 3rC</em></h2>
+    <div class="rols-grid">
+      <div class="rol-card">
+        <div class="rol-icon">📋</div>
+        <div class="rol-title">Gestor/a del Portfoli</div>
+        <div class="rol-name">________________________</div>
+        <div class="rol-desc">Endreça la informació, penja fotografies i gestiona els enllaços</div>
+      </div>
+      <div class="rol-card">
+        <div class="rol-icon">🔍</div>
+        <div class="rol-title">Documentalista</div>
+        <div class="rol-name">________________________</div>
+        <div class="rol-desc">Cerca i selecciona la informació de les fonts consultades</div>
+      </div>
+      <div class="rol-card">
+        <div class="rol-icon">🔍</div>
+        <div class="rol-title">Documentalista</div>
+        <div class="rol-name">________________________</div>
+        <div class="rol-desc">Cerca i selecciona la informació de les fonts consultades</div>
+      </div>
+      <div class="rol-card">
+        <div class="rol-icon">📷</div>
+        <div class="rol-title">Fotògraf/a</div>
+        <div class="rol-name">________________________</div>
+        <div class="rol-desc">Selecciona i edita les imatges que il·lustren el portfoli</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXT HISTORIC -->
+
+<section id="context" class="context-bg">
+  <div class="container">
+    <div class="section-label">Capítol I</div>
+    <h2 class="section-title">L'Edat Moderna:<br><em>Època de Canvis i Ruptures</em></h2>
+    <p class="section-intro">L'Edat Moderna (ss. XV–XVIII) és un període de transformació profunda en tots els àmbits: polític, social, econòmic, cultural i artístic.</p>
+
+```
+<div class="highlight-box">
+  L'Edat Moderna s'inicia el <strong>1453</strong> amb la caiguda de Constantinoble i finalitza el <strong>1789</strong> amb la Revolució Francesa — tres segles de canvis revolucionaris que van transformar Europa per sempre.
+</div>
+
+<div class="timeline">
+  <div class="timeline-item">
+    <div class="timeline-year">1453</div>
+    <div class="timeline-event">Caiguda de Constantinoble — Fi de l'Imperi Bizantí i inici convencional de l'Edat Moderna</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-year">1492</div>
+    <div class="timeline-event">Cristòfol Colom arriba a Amèrica — S'obre una nova era d'exploracions i conquestes</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-year">Segle XVI</div>
+    <div class="timeline-event">La Reforma Protestant de Martí Luter trenca la unitat religiosa d'Europa</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-year">Ss. XVI–XVII</div>
+    <div class="timeline-event">La Revolució Científica: Copèrnic, Galileu i Newton canvien la visió del cosmos</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-year">Segle XVII</div>
+    <div class="timeline-event">L'absolutisme monàrquic s'estén per Europa — Lluís XIV i Versalles en són el símbol suprem</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-year">1789</div>
+    <div class="timeline-event">La Revolució Francesa posa fi a l'Antic Règim i tanca l'Edat Moderna</div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- QUOTE 1 -->
+
+<div class="quote-section">
+  <blockquote class="quote-text">"L'home és la mesura de totes les coses."</blockquote>
+  <p class="quote-author">Protàgores · Recuperat pels humanistes del Renaixement</p>
+</div>
+
+<!-- ART: RENAIXEMENT I BARROC -->
+
+<section id="art" class="section-dark">
+  <div class="container">
+    <div class="section-label">Capítol II</div>
+    <h2 class="section-title" style="color: var(--gold-light);">Les Noves<br><em style="color: var(--gold);">Concepcions Artístiques</em></h2>
+    <p class="section-intro">Dos grans moviments van dominar l'escena cultural europea: el Renaixement (ss. XV–XVI) i el Barroc (ss. XVII–XVIII). Maneres radicalment diferents d'entendre l'art.</p>
+
+```
+<!-- Compare -->
+<div class="compare-grid">
+  <div class="compare-header renaissance">Renaixement<br><small style="font-weight:300; font-size:0.8rem; letter-spacing:0.05em">Segles XV–XVI</small></div>
+  <div class="compare-header baroque">Barroc<br><small style="font-weight:300; font-size:0.8rem; letter-spacing:0.05em">Segles XVII–XVIII</small></div>
+
+  <div class="compare-cell ren">Equilibri i mesura</div>
+  <div class="compare-cell bar">Dramatisme i emoció</div>
+  <div class="compare-cell ren">Perspectiva geomètrica clara</div>
+  <div class="compare-cell bar">Clarobscur intens i profunditat</div>
+  <div class="compare-cell ren">Figures ideals i estàtiques</div>
+  <div class="compare-cell bar">Figures en moviment i tensió</div>
+  <div class="compare-cell ren">Colors lluminosos i clars</div>
+  <div class="compare-cell bar">Contrasts forts de llum i ombra</div>
+  <div class="compare-cell ren">Temples racionals i equilibrats</div>
+  <div class="compare-cell bar">Esglésies ornamentades i espectaculars</div>
+  <div class="compare-cell ren">Temes mitològics i religiosos</div>
+  <div class="compare-cell bar">Temes religiosos, polítics i populars</div>
+</div>
+
+<!-- Masters -->
+<h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:var(--gold-light); margin: 3.5rem 0 0.5rem;">Els Grans Mestres</h3>
+<p style="color:rgba(245,237,214,0.6); font-style:italic; margin-bottom:1rem;">Els artistes més influents de l'Edat Moderna</p>
+<div class="masters-grid">
+  <div class="master-card">
+    <div class="master-symbol">✦</div>
+    <div class="master-name">Leonardo da Vinci</div>
+    <div class="master-dates">1452 – 1519 · Itàlia</div>
+    <div class="master-desc">Pintor, escultor, arquitecte i científic. Autor de <em>La Gioconda</em> i <em>L'Última Cena</em>. L'exemple màxim del «homo universalis».</div>
+  </div>
+  <div class="master-card">
+    <div class="master-symbol">⊕</div>
+    <div class="master-name">Miquel Àngel</div>
+    <div class="master-dates">1475 – 1564 · Itàlia</div>
+    <div class="master-desc">Autor del <em>David</em>, la <em>Pietà</em> i la volta de la Capella Sixtina. La seva obra transmet una energia i un drama humans irrepetibles.</div>
+  </div>
+  <div class="master-card">
+    <div class="master-symbol">◈</div>
+    <div class="master-name">Rafael Sanzio</div>
+    <div class="master-dates">1483 – 1520 · Itàlia</div>
+    <div class="master-desc">Figures ideals i composicions d'equilibri perfecte. Les <em>Estances del Vaticà</em> defineixen la perfecció clàssica del Renaixement.</div>
+  </div>
+  <div class="master-card">
+    <div class="master-symbol">∞</div>
+    <div class="master-name">Caravaggio</div>
+    <div class="master-dates">1571 – 1610 · Itàlia</div>
+    <div class="master-desc">Mestre del clarobscur i el tenebrisme. <em>La Vocació de Sant Mateu</em> inaugura la pintura barroca i revoluciona per sempre l'art occidental.</div>
+  </div>
+  <div class="master-card">
+    <div class="master-symbol">★</div>
+    <div class="master-name">Gian Lorenzo Bernini</div>
+    <div class="master-dates">1598 – 1680 · Itàlia</div>
+    <div class="master-desc">Escultor i arquitecte barroc per excel·lència. Va transformar Roma: la Plaça de Sant Pere i <em>L'Èxtasi de Santa Teresa</em> en són els cims.</div>
+  </div>
+  <div class="master-card">
+    <div class="master-symbol">◆</div>
+    <div class="master-name">Diego Velázquez</div>
+    <div class="master-dates">1599 – 1660 · Espanya</div>
+    <div class="master-desc">Pintor de cambra de Felip IV. <em>Les Menines</em> (1656) és considerada per molts crítics la millor pintura de la història.</div>
+  </div>
+  <div class="master-card">
+    <div class="master-symbol">⬡</div>
+    <div class="master-name">Rembrandt</div>
+    <div class="master-dates">1606 – 1669 · Holanda</div>
+    <div class="master-desc">Mestre holandès del retrat i el clarobscur. <em>La Ronda de Nit</em> és un dels grans monuments de la pintura occidental.</div>
+  </div>
+  <div class="master-card">
+    <div class="master-symbol">○</div>
+    <div class="master-name">Johannes Vermeer</div>
+    <div class="master-dates">1632 – 1675 · Holanda</div>
+    <div class="master-desc">Pintor de la llum quotidiana. Les seves escenes d'interiors domèstics com <em>La Noia de la Perla</em> són petites meravelles de serenitat.</div>
+  </div>
+</div>
+
+<!-- Music -->
+<h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:var(--gold-light); margin: 3.5rem 0 0.5rem;">La Música Barroca</h3>
+<p style="color:rgba(245,237,214,0.6); font-style:italic; margin-bottom:0.5rem;">L'Edat Moderna va viure una revolució musical: va néixer l'òpera, el sistema tonal i les grans formes instrumentals.</p>
+<div class="music-grid">
+  <div class="music-card">
+    <div class="music-note">🎹</div>
+    <div class="music-composer">J. S. Bach</div>
+    <div class="music-dates">1685 – 1750 · Alemanya</div>
+    <div class="music-work">Variacions Goldberg · El Clave ben Temperat · Les Passions</div>
+  </div>
+  <div class="music-card">
+    <div class="music-note">🎺</div>
+    <div class="music-composer">G. F. Handel</div>
+    <div class="music-dates">1685 – 1759 · Anglaterra</div>
+    <div class="music-work">El Messies · Música de l'Aigua · Focs Artificials Reials</div>
+  </div>
+  <div class="music-card">
+    <div class="music-note">🎻</div>
+    <div class="music-composer">Antonio Vivaldi</div>
+    <div class="music-dates">1678 – 1741 · Itàlia</div>
+    <div class="music-work">Les Quatre Estacions · Concerts per a violí</div>
+  </div>
+  <div class="music-card">
+    <div class="music-note">🎭</div>
+    <div class="music-composer">Claudio Monteverdi</div>
+    <div class="music-dates">1567 – 1643 · Itàlia</div>
+    <div class="music-work">L'Orfeo (1607) · Pare de l'òpera moderna</div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- TOUR -->
+
+<section id="tour" class="tour-bg">
+  <div class="container-wide">
+    <div style="max-width:960px; margin:0 auto 3rem;">
+      <div class="section-label">Capítol III</div>
+      <h2 class="section-title">El nostre <em>Grand Tour</em><br>pel Barroc Europeu</h2>
+      <p class="section-intro">Al segle XVII i XVIII, els joves nobles realitzaven el <em>Grand Tour</em>: un llarg viatge per Europa per completar la seva formació cultural. Seguint la tradició, visitem 6 ciutats emblèmàtiques.</p>
+    </div>
+
+```
+<div style="max-width:960px; margin:0 auto;">
+  <div class="route-bar">
+    <div class="route-stop"><span class="route-city">🏛 ROMA</span></div>
+    <span class="route-arrow">→</span>
+    <div class="route-stop"><span class="route-city">⚜ FLORÈNCIA</span></div>
+    <span class="route-arrow">→</span>
+    <div class="route-stop"><span class="route-city">👑 VERSALLES</span></div>
+    <span class="route-arrow">→</span>
+    <div class="route-stop"><span class="route-city">🌊 AMSTERDAM</span></div>
+    <span class="route-arrow">→</span>
+    <div class="route-stop"><span class="route-city">🎵 VIENA</span></div>
+    <span class="route-arrow">→</span>
+    <div class="route-stop"><span class="route-city">🎨 MADRID</span></div>
+  </div>
+
+  <div class="destination-cards">
+
+    <!-- ROMA -->
+    <div class="dest-card">
+      <div class="dest-aside">
+        <div class="dest-emoji">🏛</div>
+        <div class="dest-city">Roma</div>
+        <div class="dest-country">Itàlia</div>
+        <div class="dest-num">01</div>
+      </div>
+      <div class="dest-info">
+        <div class="dest-monument">Basílica de Sant Pere i la Plaça de Sant Pere</div>
+        <div class="dest-desc">Obra mestra de Gian Lorenzo Bernini, la plaça amb la seva columnata el·líptica (1656–1667) és l'espai barroc per excel·lència. El Baldaquí sobre la tomba de Sant Pere — 29 metres d'alçada en bronze — és una de les escultures més colossals del Barroc.</div>
+        <div class="dest-curiositat">✦ Bernini va passar 50 anys treballant per al Vaticà i va transformar completament el rostre de Roma.</div>
+        <div class="dest-highlights">
+          <div class="dest-highlight">Caravaggio: <em>La Vocació de Sant Mateu</em> — Església de Sant Lluigi dei Francesi</div>
+          <div class="dest-highlight">Bernini: <em>L'Èxtasi de Santa Teresa</em> — Església de Santa Maria della Vittoria</div>
+          <div class="dest-highlight">Museus Vaticans i la Capella Sixtina de Miquel Àngel</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLORÈNCIA -->
+    <div class="dest-card">
+      <div class="dest-aside">
+        <div class="dest-emoji">⚜</div>
+        <div class="dest-city">Florència</div>
+        <div class="dest-country">Itàlia</div>
+        <div class="dest-num">02</div>
+      </div>
+      <div class="dest-info">
+        <div class="dest-monument">La Galeria dels Uffizi</div>
+        <div class="dest-desc">Fundada pels Mèdici, és un dels museus més importants del món. Conserva el <em>Naixement de Venus</em> de Botticelli, obres de Leonardo, Rafael i Miquel Àngel, a més d'una impressionant col·lecció de pintura barroca italiana.</div>
+        <div class="dest-curiositat">✦ La galeria ocupa l'edifici dels «Uffici» (Oficines) del govern florentí, construït per Vasari el 1560 per a Cosimo de' Mèdici.</div>
+        <div class="dest-highlights">
+          <div class="dest-highlight">Catedral Santa Maria del Fiore — la cúpula de Brunelleschi, prodigi d'enginyeria</div>
+          <div class="dest-highlight">Palazzo Pitti: Rubens, Caravaggio i Artemisia Gentileschi</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VERSALLES -->
+    <div class="dest-card">
+      <div class="dest-aside">
+        <div class="dest-emoji">👑</div>
+        <div class="dest-city">Versalles</div>
+        <div class="dest-country">França</div>
+        <div class="dest-num">03</div>
+      </div>
+      <div class="dest-info">
+        <div class="dest-monument">El Palau de Versalles — Barroc al servei del Poder</div>
+        <div class="dest-desc">Construït entre 1661 i 1710 per Jules Hardouin-Mansart, el palau i els jardins cobreixen més de 800 hectàrees. La Galeria dels Miralls — 73 metres de llarg, 357 miralls — és el centre neuràlgic de la glòria del Rei Sol.</div>
+        <div class="dest-curiositat">✦ Versalles acollia unes 20.000 persones entre nobles, servents i cortesans que hi vivien i treballaven.</div>
+        <div class="dest-highlights">
+          <div class="dest-highlight">Jardins Le Nôtre: geometria perfecta com a domini de la raó sobre la natura</div>
+          <div class="dest-highlight">Jean-Baptiste Lully: compositor de la cort que va crear l'òpera francesa</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AMSTERDAM -->
+    <div class="dest-card">
+      <div class="dest-aside">
+        <div class="dest-emoji">🌊</div>
+        <div class="dest-city">Amsterdam</div>
+        <div class="dest-country">Països Baixos</div>
+        <div class="dest-num">04</div>
+      </div>
+      <div class="dest-info">
+        <div class="dest-monument">El Rijksmuseum — L'Edat d'Or Holandesa</div>
+        <div class="dest-desc">El museu nacional d'Holanda conserva la millor col·lecció de pintura del Barroc holandès. <em>La Ronda de Nit</em> de Rembrandt (1642) i <em>La Noia de la Perla</em> de Vermeer en són les obres mestres absolutes.</div>
+        <div class="dest-curiositat">✦ La Ronda de Nit mesura 3,63 × 4,37 metres i va ser tallada al s. XVIII per caber per una porta!</div>
+        <div class="dest-highlights">
+          <div class="dest-highlight">Rembrandt: mestre del clarobscur i la profunditat psicològica</div>
+          <div class="dest-highlight">Vermeer: pintor de la llum quotidiana i els interiors domèstics</div>
+          <div class="dest-highlight">Casa de Rembrandt: el seu taller i col·lecció a la Jodenbreetstraat</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIENA -->
+    <div class="dest-card">
+      <div class="dest-aside">
+        <div class="dest-emoji">🎵</div>
+        <div class="dest-city">Viena</div>
+        <div class="dest-country">Àustria</div>
+        <div class="dest-num">05</div>
+      </div>
+      <div class="dest-info">
+        <div class="dest-monument">Schönbrunn & Belvedere — Barroc Imperial</div>
+        <div class="dest-desc">El Palau de Schönbrunn, residència d'estiu dels Habsburgs, té 1.441 habitacions i uns jardins esplèndids. El Belvedere, amb les seves dues ales unides per jardins geomètrics, allotja el Museu d'Art Barroc.</div>
+        <div class="dest-curiositat">✦ El jove Mozart va tocar davant l'emperadriu Maria Teresa a Schönbrunn quan tenia sols 6 anys, el 1762.</div>
+        <div class="dest-highlights">
+          <div class="dest-highlight">La Musikverein: la sala de concerts més famosa del món, seu del Concert de Cap d'Any</div>
+          <div class="dest-highlight">L'Òpera de Viena: la tradició operística arrela en el Barroc italià</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MADRID -->
+    <div class="dest-card">
+      <div class="dest-aside">
+        <div class="dest-emoji">🎨</div>
+        <div class="dest-city">Madrid</div>
+        <div class="dest-country">Espanya</div>
+        <div class="dest-num">06</div>
+      </div>
+      <div class="dest-info">
+        <div class="dest-monument">El Museo del Prado — El Siglo de Oro</div>
+        <div class="dest-desc">Inaugurat el 1819, el Prado custodia la col·lecció reial espanyola, formada per reis apassionats per l'art com Felip II i Felip IV. Conté obres de Velázquez, El Greco, Goya, Rubens i Tizià.</div>
+        <div class="dest-curiositat">✦ El Prado té al voltant de 8.000 pintures, però en té exposades sols unes 1.500. La resta és als magatzems!</div>
+        <div class="dest-highlights">
+          <div class="dest-highlight">Velázquez: <em>Les Menines</em> (1656) — potser la millor pintura de la història</div>
+          <div class="dest-highlight">El Greco: figures allargades i colors brillants que anticipen el Barroc</div>
+          <div class="dest-highlight">Murillo: pintura religiosa i popular que va triomfar a tota Europa</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- QUOTE 2 -->
+
+<div class="quote-section">
+  <blockquote class="quote-text">"L'art no reprodueix el que és visible; fa visible el que no sempre ho és."</blockquote>
+  <p class="quote-author">Paul Klee · Pintor i teòric de l'art</p>
+</div>
+
+<!-- GLOSSARI -->
+
+<section id="glossari" style="background: var(--parchment);">
+  <div class="container">
+    <div class="section-label">Annex I</div>
+    <h2 class="section-title">Glossari de<br><em>Termes Clau</em></h2>
+    <p class="section-intro">Les paraules essencials per entendre l'art i la música de l'Edat Moderna.</p>
+    <div class="glossari-grid">
+      <div class="glossari-card">
+        <div class="glossari-term">Barroc</div>
+        <div class="glossari-def">Estil artístic dels ss. XVII–XVIII caracteritzat pel dramatisme, el moviment, el clarobscur i l'ostentació. S'estén des de l'arquitectura fins a la música.</div>
+      </div>
+      <div class="glossari-card">
+        <div class="glossari-term">Clarobscur</div>
+        <div class="glossari-def">Tècnica pictòrica que juga amb forts contrasts de llum i ombra per donar volumetria i dramatisme a les figures. Caravaggio n'és el mestre suprem.</div>
+      </div>
+      <div class="glossari-card">
+        <div class="glossari-term">Humanisme</div>
+        <div class="glossari-def">Moviment intel·lectual del Renaixement que situa l'ésser humà al centre del pensament, en contraposició al teocentrisme medieval.</div>
+      </div>
+      <div class="glossari-card">
+        <div class="glossari-term">Mecenatge</div>
+        <div class="glossari-def">Patrocini econòmic de l'art per part de persones riques i poderoses, com la família Mèdici o els reis absolutistes.</div>
+      </div>
+      <div class="glossari-card">
+        <div class="glossari-term">Òpera</div>
+        <div class="glossari-def">Espectacle total que combina música, cant, teatre, dansa i escenografia. Neix al Barroc italià cap al 1600 amb Monteverdi.</div>
+      </div>
+      <div class="glossari-card">
+        <div class="glossari-term">Perspectiva</div>
+        <div class="glossari-def">Tècnica matemàtica que permet representar l'espai tridimensional en una superfície plana, donant sensació de profunditat.</div>
+      </div>
+      <div class="glossari-card">
+        <div class="glossari-term">Polifonia</div>
+        <div class="glossari-def">Música composta per diverses veus independents que sonen alhora. Característica de la música renaixentista i barroca.</div>
+      </div>
+      <div class="glossari-card">
+        <div class="glossari-term">Renaixement</div>
+        <div class="glossari-def">Moviment cultural europeu (ss. XV–XVI) que recupera els valors clàssics grecollatins i situa l'Home al centre del pensament.</div>
+      </div>
+      <div class="glossari-card">
+        <div class="glossari-term">Reforma Protestant</div>
+        <div class="glossari-def">Moviment religiós iniciat per Martí Luter el 1517 que va trencar la unitat de l'Església catòlica a Europa.</div>
+      </div>
+      <div class="glossari-card">
+        <div class="glossari-term">Tenebrisme</div>
+        <div class="glossari-def">Variant extrema del clarobscur on grans zones de la composició estan cobertes d'ombra profunda. Característic de Caravaggio i els seus seguidors.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFLEXIONS -->
+
+<section id="reflexions" class="reflexions-bg">
+  <div class="container">
+    <div class="section-label">Capítol IV</div>
+    <h2 class="section-title">Reflexions i<br><em>Conclusions del Grup</em></h2>
+    <p class="section-intro">Espai per recollir les reflexions del grup sobre el projecte, les obres que us han impactat i el que heu après.</p>
+
+```
+<div class="reflexio-box">
+  <div class="reflexio-title">L'obra d'art que més ens ha interessat</div>
+  <p style="font-size:0.95rem; color:var(--ink-soft); font-style:italic; margin-bottom:1rem;">Escriviu aquí la reflexió del grup sobre l'obra d'art que més us ha impactat i per què.</p>
+  <div class="reflexio-lines">
+    <div class="reflexio-line"></div>
+    <div class="reflexio-line"></div>
+    <div class="reflexio-line"></div>
+    <div class="reflexio-line"></div>
+  </div>
+</div>
+
+<div class="reflexio-box">
+  <div class="reflexio-title">El compositor o obra musical que més ens ha sorprès</div>
+  <p style="font-size:0.95rem; color:var(--ink-soft); font-style:italic; margin-bottom:1rem;">Trieu una obra musical del període. Expliqueu per què la heu triat i com reflecteix l'esperit de la seva època.</p>
+  <div class="reflexio-lines">
+    <div class="reflexio-line"></div>
+    <div class="reflexio-line"></div>
+    <div class="reflexio-line"></div>
+    <div class="reflexio-line"></div>
+  </div>
+</div>
+
+<div class="reflexio-box" style="border-top-color: var(--blue-dark);">
+  <div class="reflexio-title" style="color:var(--blue-dark);">Connexions amb el present</div>
+  <div style="display:flex; flex-direction:column; gap:0.6rem; margin-top:0.5rem;">
+    <div style="display:flex; gap:0.6rem; align-items:flex-start; font-size:1rem; color:var(--ink-mid);">
+      <span style="color:var(--gold); margin-top:0.2rem;">✦</span>
+      <span>L'arquitectura barroca inspira edificis públics i esglésies fins avui arreu del món.</span>
+    </div>
+    <div style="display:flex; gap:0.6rem; align-items:flex-start; font-size:1rem; color:var(--ink-mid);">
+      <span style="color:var(--gold); margin-top:0.2rem;">✦</span>
+      <span>La música barroca sona a pel·lícules, sèries, publicitat i concerts arreu del món.</span>
+    </div>
+    <div style="display:flex; gap:0.6rem; align-items:flex-start; font-size:1rem; color:var(--ink-mid);">
+      <span style="color:var(--gold); margin-top:0.2rem;">✦</span>
+      <span>Els conceptes del Barroc (llum, ombra, dramatisme) influeixen en la fotografia i el cinema actuals.</span>
+    </div>
+  </div>
+</div>
+
+<div class="reflexio-box" style="border-top-color: var(--red-dark);">
+  <div class="reflexio-title" style="color:var(--red-dark);">Valoració del projecte</div>
+  <p style="font-size:0.95rem; color:var(--ink-soft); font-style:italic; margin-bottom:1rem;">Que us ha semblat el projecte? Que heu après? Que canviaríeu? Quin aspecte us ha costat més i quin us ha agradat més?</p>
+  <div class="reflexio-lines">
+    <div class="reflexio-line"></div>
+    <div class="reflexio-line"></div>
+    <div class="reflexio-line"></div>
+    <div class="reflexio-line"></div>
+  </div>
+</div>
+
+<!-- Bibliografia -->
+<div style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--parchment-dark);">
+  <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; color:var(--ink); margin-bottom:1rem;">Annex II · Bibliografia i Webgrafia</h3>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:1rem;">
+    <div>
+      <p style="font-size:0.8rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.6rem;">Llibres</p>
+      <ul style="list-style:none; font-size:0.95rem; color:var(--ink-soft); display:flex; flex-direction:column; gap:0.4rem;">
+        <li>Garcia Iglesias, L.M.: <em>Historia del Arte.</em> Anaya, 2018.</li>
+        <li>Janson, H.W.: <em>Historia General del Arte.</em> Alianza, 2010.</li>
+        <li>Grout & Palisca: <em>Historia de la Música Occidental.</em> Alianza, 2006.</li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-size:0.8rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.6rem;">Recursos digitals</p>
+      <ul style="list-style:none; font-size:0.95rem; color:var(--blue-mid); display:flex; flex-direction:column; gap:0.4rem;">
+        <li><a href="https://www.museodelprado.es" target="_blank" style="color:var(--blue-mid);">museodelprado.es</a></li>
+        <li><a href="https://www.museivaticani.va" target="_blank" style="color:var(--blue-mid);">museivaticani.va</a></li>
+        <li><a href="https://www.rijksmuseum.nl" target="_blank" style="color:var(--blue-mid);">rijksmuseum.nl</a></li>
+        <li><a href="https://www.wga.hu" target="_blank" style="color:var(--blue-mid);">wga.hu — Web Gallery of Art</a></li>
+        <li><a href="https://www.museunacional.cat" target="_blank" style="color:var(--blue-mid);">museunacional.cat — MNAC</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="footer-title">Gran Tour pel Barroc</div>
+  <p>Portfoli de 3r d'ESO · Ciències Socials & Música · Curs 2024–2025</p>
+  <div class="footer-divider"></div>
+  <p style="font-size:0.8rem; opacity:0.5;">"Sensi arte è come agire senza pensare." — Agir sense art és com actuar sense pensar.</p>
+</footer>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, entry.target.dataset.delay || 0);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  // Stagger children of groups
+  document.querySelectorAll('.timeline-item, .master-card, .dest-card, .glossari-card').forEach((el, i) => {
+    el.dataset.delay = (i % 4) * 100;
+    observer.observe(el);
+  });
+
+  // Nav active on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--gold-light)' : 'rgba(232,201,122,0.75)';
+    });
+  });
+</script>
 
 </body>
 </html>
